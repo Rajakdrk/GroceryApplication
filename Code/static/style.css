@@ -1,0 +1,106 @@
+:root{
+    --primary:#39d8de;
+    --secondary: #dea337;
+    --ternary:#808080;
+    --pure:#ffffff;
+    --purple: #e12ee1;
+}
+h1{
+    color: var(--primary);
+}
+body{
+    font-family: 'Poppins',sans-serif
+}
+
+/* utilities starts */
+.anchorButton{
+    background-color: var(--secondary);
+    color: var(--pure);
+    text-decoration: none;
+    border: 1px solid var(--secondary);
+    border-radius: 25px;
+    padding: 9px 21px;
+}
+.anchorButton:hover{
+    color: var(--secondary);
+    background-color: var(--pure);
+    transition-delay: 100ms;
+    border: 1px solid var(--secondary);
+}
+.anchorButtonEmpty{
+    text-decoration: none;
+    color: var(--secondary);
+    background-color: var(--pure);
+    border: 1px solid var(--secondary);
+    border-radius: 25px;
+    padding: 9px 21px;
+}
+.anchorButtonEmpty:hover{
+    background-color: var(--secondary);
+    color: var(--pure);
+    transition-delay: 100ms;
+}
+/* utilities ends */
+
+
+/* index file styling starts */
+.indexContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.indexContainer .admin{
+    text-decoration: none;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 25px;
+    padding: 9px 21px;
+}
+
+.indexContainer .admin:hover{
+    background-color: var(--secondary);
+    color: var(--pure);
+    transition-delay: 100ms;
+}
+.indexContainer .user{
+    background-color: var(--secondary);
+    color: var(--pure);
+    text-decoration: none;
+    border: 1px solid var(--secondary);
+    border-radius: 25px;
+    padding: 9px 21px;
+}
+.indexContainer .user:hover{
+    color: var(--secondary);
+    background-color: var(--pure);
+    transition-delay: 100ms;
+    border: 1px solid var(--secondary);
+}
+/* index file styling ends */
+
+/* adminLoginForm styling starts */
+.adminLoginForm{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* adminLoginForm styling ends */
+
+/* userLoginForm styling starts */
+.userLoginForm{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.userLoginForm fieldset{
+    padding: 50px;
+}
+.userLoginForm a{
+    margin-left: 30%;
+}
+/* userLoginForm styling ends */

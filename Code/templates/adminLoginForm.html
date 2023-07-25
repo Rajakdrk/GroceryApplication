@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Login Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="adminLoginForm">
+        <form action="/admin_login" method="POST">
+            <fieldset>
+                <legend>Admin Login Form</legend>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" required placeholder="ex: admin">
+                <br>
+                <br>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" required placeholder="ex: 12345">
+                <br>
+                <br>
+                <input type="submit" value="login">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>

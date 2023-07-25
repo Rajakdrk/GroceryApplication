@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Login Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="userLoginForm">
+        <form action="/user_login" method="POST">
+            <fieldset>
+                <legend>User Login Form</legend>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" required placeholder="ex: Username">
+                <br>
+                <br>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" required placeholder="ex: 12345">
+                <br>
+                <br>
+                <input class="anchorButtonEmpty" type="submit" value="login">
+                <a class="anchorButton" href="/user_registration">Register</a>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
