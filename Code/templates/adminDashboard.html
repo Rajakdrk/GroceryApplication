@@ -13,5 +13,34 @@
         </span>
     </div>
     <hr>
+    <div class="adminClass2">
+        {% if categories|length == 0 %}
+            <h1>No products or Category Created Yet!</h1>
+            <div class="plus container" title="Add category">
+                <a href="">+</a>
+            </div>
+        {%else%}
+            <div class="categories">
+                {% for category in categories %}
+                    {{ category.name }}
+                    <div class="category">
+                        {% for product in category.products %}
+                            <div class="product">
+                                {{ product.name }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="buttonBar">
+                <div class="addButton" title="Add Category">
+                    <a href="/addCategory/{{username}}">Add Category</a>
+                </div>
+                <div class="addButton" title="Add Product">
+                    <a href="/addProduct/{{username}}">Add Product</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

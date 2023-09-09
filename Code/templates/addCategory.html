@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Category</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <div class="addCategory">
+        <form action="/addCategory/{{username}}" method="POST">
+            <fieldset>
+                <legend>Adding Category</legend>
+                <label for="categoryName">Name of Category: </label>
+                <input type="text" name="categoryName" id="categoryName" placeholder="ex: friuts" required>
+                <br>
+                <br>
+                <input type="submit" value="Add Category">
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

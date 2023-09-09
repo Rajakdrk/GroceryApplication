@@ -14,13 +14,21 @@ class User_login(db.Model):
     password = db.Column(db.String(50), nullable=False)
 
 class Category(db.Model):
-    c_id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(20), nullable=False) 
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(20), nullable=False)
+    products = db.relationship('Product', backref="categories", secondary="association")
 
 class Product(db.Model):
-    p_id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(20), nullable=False)
     expiry_date = db.Column(db.Date, nullable=False)
     quantity_type = db.Column(db.String, nullable=False)
-    price = db.Column(db.Integer(), primary_key=True) #integer or decimal
+    price = db.Column(db.Integer(), nullable=False) #integer or decimal
     
+class Item_cart(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    
+class Association(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    category_id = db.Column(db.Integer(), db.ForeignKey("category.id"))
+    product_id = db.Column(db.Integer(), db.ForeignKey("product.id"))

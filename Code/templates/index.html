@@ -14,5 +14,19 @@
         </span>
     </div>
     <hr>
+    <div class="display">
+        <div class="categories">
+            {% for category in categories%}
+                <div class="category">
+                    {{ category.name }}
+                    {% for product in products%}
+                        <div class="products">
+                            {{ p}}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

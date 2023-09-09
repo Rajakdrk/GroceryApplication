@@ -13,7 +13,8 @@ db.create_all()
 # ================================= Controller starts ===================================
 @app.route('/', methods = ['GET', 'POST'])
 def Hello():
-    return render_template("index.html")
+    categories = Category.query.all()
+    return render_template("index.html", categories=categories)
 
 # ===================  admin  ======================
 @app.route('/admin_login', methods = ['GET', 'POST'])
@@ -24,17 +25,40 @@ def admin_login():
         username = request.form.get('username')
         password = request.form.get('password')
         admins = Admin_login.query.all()
+        categories = Category.query.all()
+        products = Product.query.all()
         flag = True
         for admin in admins:
             if admin.username == username and admin.password == password:
                 flag = False
-                return redirect(url_for("admin_dashboard", username=username))
+                return redirect(url_for("admin_dashboard", username=username, categories=categories, products=products))
         if flag:
             return render_template("errorPage.html")
     
 @app.route('/admin_dashboard/<username>', methods = ['GET', 'POST'])
 def admin_dashboard(username):
-    return render_template("adminDashboard.html", username=username)
+    categories = Category.query.all()
+    products = Product.query.all()
+    return render_template("adminDashboard.html", username=username, categories=categories, products=products)
+
+@app.route('/addCategory/<username>', methods=['GET', 'POST'])
+def addCategory(username):
+    admins = Admin_login.query.all()
+    if request.method == 'GET':
+        return render_template("addCategory.html", username=username)
+    elif request.method == 'POST':
+        addCategory = request.form.get('categoryName')
+        category = Category(name=addCategory)
+        db.session.add(category)
+        db.session.commit()
+        return redirect(url_for("admin_dashboard", username=username))
+
+@app.route('/addProduct/<username>', methods = ['GET', 'POST'])
+def addProduct(username):
+    if request.method == 'GET':
+        return render_template("addProduct.html", username=username)
+    elif request.method == 'POST':
+        return redirect(url_for("admin_dastboard", username=username))
 # ===================  admin  ======================
 
 

@@ -40,6 +40,25 @@ body{
     color: var(--pure);
     transition-delay: 100ms;
 }
+.addButton{
+    margin-top: 40px;
+    margin-left: 40px;
+}
+.addButton a{
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    font-size: xxx-large;
+    border-radius: 13px;
+    padding: 10px;
+}
+.addButton a:hover{
+    background-color: var(--primary);
+    color: var(--pure);
+}
+.buttonBar{
+    display: flex;
+    margin-bottom: 50px;
+}
 /* utilities ends */
 
 
@@ -104,3 +123,48 @@ body{
     margin-left: 30%;
 }
 /* userLoginForm styling ends */
+
+
+/* adminDashboard.html  starts */
+.adminClass2 .plus a{
+    border: 2px solid rgb(2, 72, 132);
+    border-radius: 35%;
+    padding: 30px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+.adminClass2 .plus a:hover{
+    color: white;
+    background-color: rgb(2, 72, 132);
+}
+.adminClass2 .categories .category{
+    border: 2px solid var(--primary);
+    margin: 10px;
+}
+.adminClass2 .categories .category .product{
+    display: inline-block;
+    border: 2px solid var(--secondary);
+    margin: 10px;
+    height: 200px;
+    width: 200px;
+}
+.addCategory{
+    text-decoration: none;
+}
+/* adminDashboard.html  ends */
+
+/* index.html starts */
+.display .categories .category{
+    border: 1px solid black;
+    border-radius: 10%;
+}
+/* index.html ends */
+
+/* addCategory starts */
+.addCategory{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* addCategory ends */
