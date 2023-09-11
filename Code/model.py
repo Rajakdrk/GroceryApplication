@@ -29,6 +29,5 @@ class Item_cart(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     
 class Association(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    category_id = db.Column(db.Integer(), db.ForeignKey("category.id"))
-    product_id = db.Column(db.Integer(), db.ForeignKey("product.id"))
+    category_id = db.Column(db.Integer(), db.ForeignKey("category.id"), primary_key=True)
+    product_id = db.Column(db.Integer(), db.ForeignKey("product.id"), primary_key=True)

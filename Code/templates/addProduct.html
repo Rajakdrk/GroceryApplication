@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <div class="addCategory">
+        <form action="" method="POST">
+            <fieldset>
+                <legend>Adding Product</legend>
+                <label for="ProductName"><span style="color: red;">*</span>Name of Product: </label>
+                <input type="text" name="productName" id="productName" placeholder="e.g: milk" required>
+                <br>
+                <br>
+                <label for="expiryDate"><span style="color: red;">*</span>Expiry Date: </label>
+                <input type="date" name="expiryDate" id="expiryDate" required>
+                <br>
+                <br>
+                <label for="quantityType"><span style="color: red;">*</span>Quantity Type</label>
+                <input type="text" name="quantityType" id="quantityType" placeholder="e.g.: kg" required>
+                <br>
+                <br>
+                <label for="price"><span style="color: red;">*</span>Price: </label>
+                <input type="number" name="price" id="price" placeholder="e.g.: 100" required>
+                <br>
+                <br>
+                <label for="category">Category: </label>
+                <select name="category" id="category">
+                    <option value="none">None</option>
+                    {% for category in categories%}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor%}
+                </select>
+                <br>
+                <br>
+                <input type="submit" value="Add Product">
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <div class="addCategory">
+        <form action="" method="POST">
+            <fieldset>
+                <legend>Editing <span style="color: var(--primary); font-size: xx-large;">{{ product.name }}</span> Product</legend>
+                <label for="ProductName"><span style="color: red;">*</span>Name of Product from <span style="color: var(--primary); font-size: larger;">{{ product.name }}</span> To: </label>
+                <input type="text" name="productName" id="productName" placeholder="e.g: milk" required>
+                <br>
+                <br>
+                <label for="expiryDate"><span style="color: red;">*</span>Expiry Date from <span style="color: var(--primary); font-size: larger;">{{ product.expiry_date }}</span> To: </label>
+                <input type="date" name="expiryDate" id="expiryDate" required>
+                <br>
+                <br>
+                <label for="quantityType"><span style="color: red;">*</span>Quantity Type from <span style="color: var(--primary); font-size: larger;">{{ product.quantity_type }}</span> To:</label>
+                <input type="text" name="quantityType" id="quantityType" placeholder="e.g.: kg" required>
+                <br>
+                <br>
+                <label for="price"><span style="color: red;">*</span>Price from <span style="color: var(--primary); font-size: larger;">{{ product.price }}</span> To: </label>
+                <input type="number" name="price" id="price" placeholder="e.g.: 100" required>
+                <br>
+                <br>
+                <input type="submit" value="Save Changes">
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

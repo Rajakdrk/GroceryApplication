@@ -14,19 +14,43 @@
         </span>
     </div>
     <hr>
-    <div class="display">
-        <div class="categories">
-            {% for category in categories%}
-                <div class="category">
-                    {{ category.name }}
-                    {% for product in products%}
-                        <div class="products">
-                            {{ p}}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
+    <div class="adminClass2">
+        {% if categories|length == 0 %}
+            <h1>No products or Category Created Yet!</h1>
+            <div class="plus container" title="Add category">
+                <a href="">+</a>
+            </div>
+        {%else%}
+            <div class="categories">
+                {% for category in categories %}
+                    <span class="categoryName">{{ category.name }}</span>
+                    <div class="category">
+                        {% for product in category.products %}
+                            <div id="userSeeProduct" class="product" style="height: 100px;">
+                                <span class="productName">{{ product.name }}</span>
+                                <span style="margin-left: 20px;">{{ product.price }}/</span>
+                                <span>{{ product.quantity_type }}</span>
+                                <br><br>
+                                <div class="userBuy">
+                                    <div class="userCart">
+                                        <a href="/user_login" title="Add to Cart">Cart</a>
+                                    </div>
+                                    <div class="userCart">
+                                        <a href="/user_login" title="Click to buy only this Product">Buy</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="indexButtonBar">
+        <span style="font-size: xx-large;">Login as: </span>
+        <a class="admin" href="/admin_login">Admin</a>
+        <a class="user" href="/user_login">User</a>
+        </span>
     </div>
 </body>
 </html>

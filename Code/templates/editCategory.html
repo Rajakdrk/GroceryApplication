@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Category</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <div class="addCategory">
+        <form action="" method="POST">
+            <fieldset>
+                <legend>Editing <span style="color: var(--primary); font-size: xx-large;">{{ category.name }}</span> Category</legend>
+                <br>
+                <label for="categoryName">Name of Category from <span style="color: var(--primary); font-size: larger;">{{ category.name }}</span> To: </label>
+                <input type="text" name="categoryName" id="categoryName" placeholder="ex: friuts" required>
+                <br>
+                <br>
+                <input type="submit" value="Save Changes">
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

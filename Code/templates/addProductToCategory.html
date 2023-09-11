@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Product to {{categoryName }}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <div class="addCategory">
+        <form action="" method="POST">
+            <fieldset>
+                <legend>Adding Product to <span style="color: var(--primary); font-size: xx-large;">{{ categoryName }}</span> Category</legend>
+                <br>
+                <label for="product">Select Product to Add: </label>
+                <select name="product" id="product">
+                    {% for product in products %}
+                        <option value="{{ product.id }}">{{ product.name }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                <br>
+                <input type="submit" value="Add Product">
+            </fieldset>
+        </form>
+    </div>
+    
+</body>
+</html>

@@ -9,7 +9,8 @@ h1{
     color: var(--primary);
 }
 body{
-    font-family: 'Poppins',sans-serif
+    font-family: 'Poppins',sans-serif;
+    margin: 30px;
 }
 
 /* utilities starts */
@@ -47,7 +48,7 @@ body{
 .addButton a{
     text-decoration: none;
     border: 2px solid var(--primary);
-    font-size: xxx-large;
+    font-size: x-large;
     border-radius: 13px;
     padding: 10px;
 }
@@ -58,6 +59,12 @@ body{
 .buttonBar{
     display: flex;
     margin-bottom: 50px;
+}
+.categoryName{
+    font-size: xx-large;
+    font-family: system-ui;
+    color: var(--purple);
+    text-decoration: underline;
 }
 /* utilities ends */
 
@@ -71,7 +78,7 @@ body{
     margin: 10px;
 }
 
-.indexContainer .admin{
+.indexContainer .admin, .indexButtonBar .admin{
     text-decoration: none;
     color: var(--secondary);
     border: 1px solid var(--secondary);
@@ -79,12 +86,12 @@ body{
     padding: 9px 21px;
 }
 
-.indexContainer .admin:hover{
+.indexContainer .admin:hover, .indexButtonBar .admin:hover{
     background-color: var(--secondary);
     color: var(--pure);
     transition-delay: 100ms;
 }
-.indexContainer .user{
+.indexContainer .user, .indexButtonBar .user{
     background-color: var(--secondary);
     color: var(--pure);
     text-decoration: none;
@@ -92,11 +99,34 @@ body{
     border-radius: 25px;
     padding: 9px 21px;
 }
-.indexContainer .user:hover{
+.indexContainer .user:hover, .indexButtonBar .user:hover{
     color: var(--secondary);
     background-color: var(--pure);
     transition-delay: 100ms;
     border: 1px solid var(--secondary);
+}
+.indexButtonBar{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.userBuy{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.userBuy a{
+    text-decoration: none;
+    border: 2px solid var(--purple);
+    font-size: smaller;
+    font-family: cursive;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    color: var(--purple);
 }
 /* index file styling ends */
 
@@ -126,6 +156,34 @@ body{
 
 
 /* adminDashboard.html  starts */
+#forStyle{
+    margin-top: 70px;
+}
+.categoryButtonBar{
+    display: flex;
+}
+.categoryDelete{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.categoryDelete .toDeleteCategory{
+    text-decoration: none;
+    border: 2px solid var(--primary);
+    font-size: smaller;
+    border-radius: 13px;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: -10px;
+}
+.categoryDelete .toDeleteCategory:hover{
+    background-color: var(--primary);
+    cursor: pointer;
+}
+.categoryDelete .a{
+    text-decoration: none;
+    color: var(--ternary);
+}
 .adminClass2 .plus a{
     border: 2px solid rgb(2, 72, 132);
     border-radius: 35%;
@@ -140,16 +198,71 @@ body{
 .adminClass2 .categories .category{
     border: 2px solid var(--primary);
     margin: 10px;
+    border-radius: 20px;
+    background-color: lightgrey;
 }
-.adminClass2 .categories .category .product{
+.adminClass2 .categories .category .product, .editAllProducts .product{
     display: inline-block;
     border: 2px solid var(--secondary);
-    margin: 10px;
-    height: 200px;
-    width: 200px;
+    border-radius: 20px;
+    margin: 17px;
+    height: 196px;
+    width: 248px;
+    background-color: var(--pure);
 }
 .addCategory{
     text-decoration: none;
+}
+.indexContainer .summery{
+    text-decoration: none;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 25px;
+    padding: 9px 21px;
+}
+.indexContainer .summery:hover{
+    background-color: var(--secondary);
+    color: var(--pure);
+    transition-delay: 100ms;
+}
+.indexContainer .logout{
+    background-color: var(--secondary);
+    color: var(--pure);
+    text-decoration: none;
+    border: 1px solid var(--secondary);
+    border-radius: 25px;
+    padding: 9px 21px;
+}
+.indexContainer .logout:hover{
+    color: var(--secondary);
+    background-color: var(--pure);
+    transition-delay: 100ms;
+    border: 1px solid var(--secondary);
+}
+.product{
+    text-align: center;
+}
+.product .productName{
+    font-size: x-large;
+    font-family: cursive;
+    margin-left: 9px;
+}
+.product .edit, .product .delete{
+    text-decoration: none;
+    border: 2px solid var(--purple);
+    font-size: smaller;
+    font-family: cursive;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    color: var(--purple);
+}
+.product .edit:hover, .product .delete:hover{
+    background-color: var(--purple);
+    color: var(--pure);
+    cursor: pointer;
 }
 /* adminDashboard.html  ends */
 
