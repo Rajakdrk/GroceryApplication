@@ -8,7 +8,7 @@
     <div class="indexContainer">
         <h1>{{username}}'s | Dashboard</h1>
         <span>
-        <a class="summery" href="/">Summary</a>
+        <a class="summery" href="#">Summary</a>
         <a class="logout" href="/">Logout</a>
         </span>
     </div>
@@ -42,18 +42,30 @@
                             </a>
                         </div>
                     </div>
-                    <div class="category">
+                    <div class="category" id="category">
                         {% for product in category.products %}
-                            <div class="product">
-                                <span class="productName">{{ product.name }}</span><br><br><br><br>
-                                <span class="productPrice">{{ product.price }}</span>Rs/
-                                <span class="productQuantityType">{{product.quantity_type }}</span><br><br><br>
-                                <div class="buttons">
-                                    <a class="edit" href="/editProduct/{{username}}/{{product.id}}" title="Click to edit this Product">Edit</a>
-                                    <a class="delete" href="/deleteProduct/{{username}}/{{category.id}}/{{product.id}}" title="Click to remove product from this category">Remove</a>
-                                </div>
+                        <div class="product" id="product">
+                                {% set flag = 1 %}
+                                {% for image in images %}
+                                    {% if image[0] == product.imageId %}
+                                        {% set flag = 0 %}
+                                        <img class="imageProduct" src="data:image/png;base64,{{image[1]}}">   
+                                    {% endif %}
+                                {%  endfor %}
+                                {% if flags == 1%}
+                                    <image class="imageProduct" src="{{url_for('static',filename = 'images/watermelon.jpg')}}" ></image>
+                                {% endif %}
+                                <section id="adminCentered">
+                                    <span class="productName">{{ product.name }}</span>
+                                    <span class="productPrice">{{ product.price }}</span>Rs/
+                                    <span class="productQuantityType">{{product.quantity_type }}</span><br><br>
+                                    <div class="buttons">
+                                        <a class="edit" href="/editProduct/{{username}}/{{product.id}}" title="Click to edit this Product">Edit</a>
+                                        <a class="delete" href="/deleteProduct/{{username}}/{{category.id}}/{{product.id}}" title="Click to remove product from this category">Remove</a>
+                                    </div>
+                                </section>
                             </div>
-                        {% endfor %}
+                            {% endfor %}
                     </div>
                 {% endfor %}
             </div>
@@ -67,6 +79,9 @@
                 </div>
                 <div class="addButton" title="Click to edit all products from Database">
                     <a href="/editAllProductsFromDB/{{username}}" >Edit Products</a>
+                </div>
+                <div class="addButton" title="Click to see all products from Database">
+                    <a href="/editAllProductsFromDB/{{username}}" >All Products</a>
                 </div>
             </div>
             <hr>

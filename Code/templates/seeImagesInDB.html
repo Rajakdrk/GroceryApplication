@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit All Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="indexContainer">
+        <h1>{{username}}'s | 
+            <a style="color: var(--ternary);font-family: cursive;text-decoration: none;" href="/admin_dashboard/{{username}}" title="Go to Dashboard">Dashboard</a></h1>
+        <span>
+        <a class="summery" href="/">Summary</a>
+        <a class="logout" href="/">Logout</a>
+        </span>
+    </div>
+    <hr>
+    <div class="adminClass2">
+        {% if images|length == 0 %}
+            <h1>No images or uploaded Yet!</h1>
+        {%else%}
+        <div style="margin: 15px;">
+            <span class="seeImageUploadText">Upload Image:</span> 
+            <a class="seeImageUploadButton" href="/upload/{{username}}">click</a>
+        </div>
+        <div class="allImages">
+            {% for image in images %}
+                <div class="imageShow">
+                    <img class="seeImage" src="data:image/png;base64,{{image[1]}}">
+                    <h4>{{ image[2] }}</h4>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -6,5 +6,21 @@
 </head>
 <body>
     <h1>User Registration Form</h1>
+    <div class="userLoginForm">
+        <form action="/user_registration" method="POST">
+            <fieldset>
+                <legend>User Registration Form</legend>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" required placeholder="ex: Username">
+                <br>
+                <br>
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" required placeholder="ex: 12345">
+                <br>
+                <br>
+                <input class="anchorButtonEmpty" type="submit" value="Register">
+            </fieldset>
+        </form>
+    </div>
 </body>
 </html>

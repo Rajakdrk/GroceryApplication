@@ -6,12 +6,75 @@
 </head>
 <body>
     <div class="indexContainer">
-        <h1>{{username}}'s | Dashboard</h1>
+        <h1><a id="userDashboard" href="/user_dashboard/{{username}}">{{username}}'s </a>| Dashboard</h1>
         <span>
-        <a href="/">Summary</a>
-        <a href="/">Logout</a>
+            <form action="/search/product/{{username}}" method="post">
+                <input type="text" name="search" id="search" title="search" placeholder=" Product name, price, manufacutring date..." required>
+                <input id="searchSymbol" type="submit" value="&#128269;">
+            </form>
+        </span>
+        <span>
+        <a href="/cart/{{username}}" title="Cart" style="text-decoration: none;">&#128722;</a>
+        <a class="summery" href="/yourOrders/{{username}}">Orders</a>
+        <a class="logout" href="/">Logout</a>
         </span>
     </div>
     <hr>
+    <span>
+        <form id="categorySearch" action="/search/category/{{username}}" method="post">
+            <input type="text" name="search" id="search" title="search" placeholder=" Category Search" required>
+            <input id="searchSymbol" type="submit" value="&#128269;">
+        </form>
+    </span>
+    <div class="userDashboard">
+        {% if categories|length == 0 %}
+            <h1>No products or Category available Yet!</h1>
+        {%else%}
+            <div class="userCategories">
+                {% for category in categories %}
+                    <span class="userCategoryName">{{ category.name }}</span>
+                    <div class="userCategory">
+                        {% for product in category.products %}
+                        <div class="userProduct">
+                            <section class="someClass">
+                                {% set flag = 1 %}
+                                {% for image in images %}
+                                    {% if image[0] == product.imageId %}
+                                        {% set flag = 0 %}
+                                        <img class="imageProduct" src="data:image/png;base64,{{image[1]}}">   
+                                    {% endif %}
+                                {%  endfor %}
+                                {% if flags == 1%}
+                                    <image class="imageProduct" src="{{url_for('static',filename = 'images/watermelon.jpg')}}" ></image>
+                                {% endif %}
+                                <div class="userProductContent">
+                                    <span class="userProductName">{{ product.name }}</span>
+                                    <span class="userProductPrice">{{ product.price }} Rs/</span>
+                                    <span style="color: var(--ternary);">{{ product.quantity_type }}</span>
+                                    <br>
+                                    <br>
+                                    <span>MFG Date: </span><span style="color: var(--ternary);">{{ product.manufacturing_date }}</span>
+                                    <br>
+                                    <br>
+                                    <span>EXP Date: </span><span style="color: var(--ternary);">{{ product.expiry_date }}</span>
+                                    <br>
+                                    <br>
+                                    <div class="userBuyBar">
+                                        <a href="/addProductToCart/{{username}}/{{product.id}}" title="Add to Cart">
+                                            <span class="userAddCart">Cart</span>
+                                        </a>
+                                        <a href="/buy/{{product.id}}/{{username}}" title="Click to buy only this Product">
+                                            <span class="userBuyButton">Buy</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

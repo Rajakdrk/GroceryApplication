@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="indexContainer">
+        <h1><a id="userDashboard" href="/user_dashboard/{{username}}">{{username}}'s </a>| Dashboard</h1>
+        <span>
+            <form action="/search/product/{{username}}" method="post">
+                <input type="text" name="search" id="search" title="search" placeholder=" Product name, price, manufacutring date..." required>
+                <input id="searchSymbol" type="submit" value="&#128269;">
+            </form>
+        </span>
+        <span>
+        <a href="/cart/{{username}}" title="Cart" style="text-decoration: none;">&#128722;</a>
+        <a class="summery" href="#">Orders</a>
+        <a class="logout" href="/">Logout</a>
+        </span>
+    </div>
+    <hr>
+    <span>
+        <form id="categorySearch" action="/search/category/{{username}}" method="post">
+            <input type="text" name="search" id="search" title="search" placeholder=" Category Search" required>
+            <input id="searchSymbol" type="submit" value="&#128269;">
+        </form>
+    </span>
+    <span class="categoryName">Your Cart</span>
+    <div class="category" id="cartCategory">
+        {% if products|length == 0 %}
+            <h1>No products added to Cart Yet!</h1>
+        {%else%}
+        {% for product in products %}
+        <div class="userProduct">
+            <section class="someClass">
+                {% set flag = 1 %}
+                {% for image in images %}
+                    {% if image[0] == product.imageId %}
+                        {% set flag = 0 %}
+                        <img class="imageProduct" src="data:image/png;base64,{{image[1]}}">   
+                    {% endif %}
+                {%  endfor %}
+                {% if flags == 1%}
+                    <image class="imageProduct" src="{{url_for('static',filename = 'images/watermelon.jpg')}}" ></image>
+                {% endif %}
+                <div class="userProductContent">
+                    <span class="userProductName">{{ product.name }}</span>
+                    <span class="userProductPrice">{{ product.price }} Rs/</span>
+                    <span style="color: var(--ternary);">{{ product.quantity_type }}</span>
+                    <br>
+                    <br>
+                    <span>MFG Date: </span><span style="color: var(--ternary);">{{ product.manufacturing_date }}</span>
+                    <br>
+                    <br>
+                    <span>EXP Date: </span><span style="color: var(--ternary);">{{ product.expiry_date }}</span>
+                    <br>
+                    <br>
+                    <div class="cartAllButtons" style="display: flex;">
+                        <div class="userCarts">
+                            <a href="/removeProductFromCart/{{username}}/{{product.id}}" title="Remove from Cart">Remove</a>
+                        </div>
+                        <div style="padding-left: 20px;padding-right:20px" class="userCarts">
+                            <a href="/buy/{{product.id}}/{{username}}" title="Click to buy only this Product">Buy</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="buyAllProducts">
+        <a href="/buyAllProducts/{{username}}" title="Click to buy all Products">Buy All</a>
+    </div>
+</body>
+</html>

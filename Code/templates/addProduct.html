@@ -8,9 +8,13 @@
     <div class="addCategory">
         <form action="" method="POST">
             <fieldset>
-                <legend>Adding Product</legend>
+                <legend><span style="color: var(--primary);font-size: x-large;font-family: cursive;">Adding Product</span></legend>
                 <label for="ProductName"><span style="color: red;">*</span>Name of Product: </label>
                 <input type="text" name="productName" id="productName" placeholder="e.g: milk" required>
+                <br>
+                <br>
+                <label for="manufacturingDate"><span style="color: red;">*</span>Manufacturing Date: </label>
+                <input type="date" name="manufacturingDate" id="manufacturingDate" required>
                 <br>
                 <br>
                 <label for="expiryDate"><span style="color: red;">*</span>Expiry Date: </label>
@@ -25,13 +29,29 @@
                 <input type="number" name="price" id="price" placeholder="e.g.: 100" required>
                 <br>
                 <br>
+                <label for="totalNoOfProducts"><span style="color: red;">*</span>Total No.of Products: </label>
+                <input type="number" name="totalNoOfProducts" id="totalNoOfProducts" required placeholder=" e.g.: 10 or 20">
+                <br>
+                <br>
                 <label for="category">Category: </label>
                 <select name="category" id="category">
                     <option value="none">None</option>
                     {% for category in categories%}
                         <option value="{{ category.id }}">{{ category.name }}</option>
                     {% endfor%}
+                </select> OR Create New <a href="/addCategory/{{username}}">Click</a>
+                <br><br>
+                <label for="image"><span style="color: red;">*</span>Product Image: </label>
+                <select name="productImage" id="image">
+                        {% for image in images %}
+                        <option value="{{ image.id }}">
+                               <a href="#"> {{image.name}}</a>
+                            </option>
+                        {%  endfor %}
                 </select>
+                <br><br>
+                Or Upload Image: <a href="/upload/{{username}}">click</a> 
+                Or See Images & Names: <a href="/seeImages/{{username}}">click</a>
                 <br>
                 <br>
                 <input type="submit" value="Add Product">

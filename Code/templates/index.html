@@ -14,43 +14,65 @@
         </span>
     </div>
     <hr>
-    <div class="adminClass2">
+
+    <div class="userDashboard">
         {% if categories|length == 0 %}
-            <h1>No products or Category Created Yet!</h1>
-            <div class="plus container" title="Add category">
-                <a href="">+</a>
-            </div>
+            <h1>No products or Category available Yet!</h1>
         {%else%}
-            <div class="categories">
+            <div class="userCategories">
                 {% for category in categories %}
-                    <span class="categoryName">{{ category.name }}</span>
-                    <div class="category">
+                    <span class="userCategoryName">{{ category.name }}</span>
+                    <div class="userCategory">
                         {% for product in category.products %}
-                            <div id="userSeeProduct" class="product" style="height: 100px;">
-                                <span class="productName">{{ product.name }}</span>
-                                <span style="margin-left: 20px;">{{ product.price }}/</span>
-                                <span>{{ product.quantity_type }}</span>
-                                <br><br>
-                                <div class="userBuy">
-                                    <div class="userCart">
-                                        <a href="/user_login" title="Add to Cart">Cart</a>
-                                    </div>
-                                    <div class="userCart">
-                                        <a href="/user_login" title="Click to buy only this Product">Buy</a>
+                        <div class="userProduct">
+                            <section class="someClass">
+                                {% set flag = 1 %}
+                                {% for image in images %}
+                                    {% if image[0] == product.imageId %}
+                                        {% set flag = 0 %}
+                                        <img class="imageProduct" src="data:image/png;base64,{{image[1]}}">   
+                                    {% endif %}
+                                {%  endfor %}
+                                {% if flags == 1%}
+                                    <image class="imageProduct" src="{{url_for('static',filename = 'images/watermelon.jpg')}}" ></image>
+                                {% endif %}
+                                <div class="userProductContent">
+                                    <span class="userProductName">{{ product.name }}</span>
+                                    <span class="userProductPrice">{{ product.price }} Rs/</span>
+                                    <span style="color: var(--ternary);">{{ product.quantity_type }}</span>
+                                    <br>
+                                    <br>
+                                    <span>MFG Date: </span><span style="color: var(--ternary);">{{ product.manufacturing_date }}</span>
+                                    <br>
+                                    <br>
+                                    <span>EXP Date: </span><span style="color: var(--ternary);">{{ product.expiry_date }}</span>
+                                    <br>
+                                    <br>
+                                    <div class="userBuyBar">
+                                        <a href="/user_login" title="Add to Cart">
+                                            <span class="userAddCart">Cart</span>
+                                        </a>
+                                        <a href="/user_login" title="Click to buy only this Product">
+                                            <span class="userBuyButton">Buy</span>
+                                        </a>
                                     </div>
                                 </div>
-                            </div>
+                            </section>
+                        </div>
                         {% endfor %}
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
     </div>
+
+
     <div class="indexButtonBar">
         <span style="font-size: xx-large;">Login as: </span>
         <a class="admin" href="/admin_login">Admin</a>
         <a class="user" href="/user_login">User</a>
         </span>
-    </div>
+    </div>  
+
 </body>
 </html>

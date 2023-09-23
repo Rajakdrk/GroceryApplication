@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Orders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="indexContainer">
+        <h1><a id="userDashboard" href="/user_dashboard/{{username}}">{{username}}'s </a>| Dashboard</h1>
+        <span>
+        <a href="/cart/{{username}}" title="Cart" style="text-decoration: none;">&#128722;</a>
+        <a class="summery" href="#">Orders</a>
+        <a class="logout" href="/">Logout</a>
+        </span>
+    </div>
+    <hr>
+    <span style="margin-left:10px;font-size: xx-large;font-family: ui-rounded;color: var(--purple);">Your Orders</span>
+    <div class="yourOrders">
+        {% for order in orders %}
+            <div class="order">
+                {% for product in products %}
+                    {% if product.id == order.pid %}
+                        <div class="userProduct" style="height:402px">
+                            <section class="someClass">
+                                {% set flag = 1 %}
+                                {% for image in images %}
+                                    {% if image[0] == product.imageId %}
+                                        {% set flag = 0 %}
+                                        <img class="imageProduct" src="data:image/png;base64,{{image[1]}}">   
+                                    {% endif %}
+                                {%  endfor %}
+                                {% if flags == 1%}
+                                    <image class="imageProduct" src="{{url_for('static',filename = 'images/watermelon.jpg')}}" ></image>
+                                {% endif %}
+                                <div class="userProductContent">
+                                    <span class="userProductName">{{ product.name }}</span>
+                                    <span class="userProductPrice">{{ product.price }} Rs/</span>
+                                    <span style="color: var(--ternary);">{{ product.quantity_type }}</span>
+                                    <br>
+                                    <br>
+                                    <span>MFG Date: </span><span style="color: var(--ternary);">{{ product.manufacturing_date }}</span>
+                                    <br>
+                                    <br>
+                                    <span>EXP Date: </span><span style="color: var(--ternary);">{{ product.expiry_date }}</span>
+                                    <br>
+                                    <br>
+                                    <div class="userBuyBar" style="margin-bottom: 16px;">
+                                        <a style="margin-right: -20px;" href="/addProductToCart/{{username}}/{{product.id}}" title="Add to Cart">
+                                            <span class="userAddCart">Cart</span>
+                                        </a>
+                                        <a href="/buy/{{product.id}}/{{username}}" title="Click to buy only this Product">
+                                            <span class="userBuyButton">Buy Again</span>
+                                        </a>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <span style="margin-right: 5px;color: var(--ternary);">Order Id: <span style="color: var(--purple);font-size: large;font-weight: 600;">{{order.id}}</span></span>
+                                        <span style="margin-left: 5px;color: var(--ternary);">Total Cost: <span style="color: var(--purple);font-size: large;font-weight: 600;">{{order.totalCost}}</span></span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+</body>
+</html>
